@@ -1,0 +1,2138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="magguarddbModel.Store" Provider="Npgsql" ProviderManifestToken="9.6.10" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="bytea" Nullable="false" />
+          <Property Name="ProductVersion" Type="varchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="_test">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dt" Type="timestamptz" Precision="7" />
+          <Property Name="aa" Type="int4" />
+        </EntityType>
+        <EntityType Name="actlog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ownid" Type="int4" />
+          <Property Name="userid" Type="int4" />
+          <Property Name="cmd" Type="varchar" MaxLength="500" />
+          <Property Name="dt" Type="timestamp" />
+          <Property Name="err" Type="int4" />
+          <Property Name="entity" Type="varchar" MaxLength="50" />
+          <Property Name="entityid" Type="int4" />
+        </EntityType>
+        <EntityType Name="alertcampaign">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="eventid" Type="int4" />
+          <Property Name="contactid" Type="int4" />
+          <Property Name="phone" Type="varchar" MaxLength="25" />
+          <Property Name="nr" Type="int4" />
+          <Property Name="status" Type="int4" />
+          <Property Name="modtime" Type="timestamp" />
+          <Property Name="calls" Type="int4" />
+          <Property Name="deleted" Type="int4" />
+          <Property Name="sname" Type="varchar" MaxLength="50" />
+          <Property Name="dt" Type="timestamp" />
+        </EntityType>
+        <EntityType Name="alertcontacts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="alertsystemid" Type="int4" />
+          <Property Name="contactid" Type="int4" />
+          <Property Name="nr" Type="int4" />
+        </EntityType>
+        <EntityType Name="alertprices">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="alertsystemid" Type="int4" />
+          <Property Name="account_type" Type="int4" />
+          <Property Name="price" Type="numeric" Precision="15" Scale="2" />
+        </EntityType>
+        <EntityType Name="alertstations">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="alertsystemid" Type="int4" />
+          <Property Name="stationid" Type="int4" />
+        </EntityType>
+        <EntityType Name="alertsystems">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="ownid" Type="int4" />
+          <Property Name="active" Type="int4" />
+          <Property Name="deleted" Type="int4" />
+          <Property Name="account" Type="varchar" MaxLength="100" />
+          <Property Name="shipping" Type="varchar" MaxLength="100" />
+          <Property Name="billing" Type="varchar" MaxLength="100" />
+          <Property Name="billcontact" Type="varchar" MaxLength="100" />
+          <Property Name="phone" Type="varchar" MaxLength="100" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="alertsystemsadress">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="alertsystemid" Type="int4" />
+          <Property Name="account" Type="varchar" MaxLength="100" />
+          <Property Name="shipping" Type="varchar" MaxLength="100" />
+          <Property Name="billing" Type="varchar" MaxLength="100" />
+          <Property Name="billcontact" Type="varchar" MaxLength="100" />
+          <Property Name="phone" Type="varchar" MaxLength="100" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="kind" Type="int4" />
+        </EntityType>
+        <EntityType Name="alertusers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="alertsystemid" Type="int4" />
+          <Property Name="userid" Type="int4" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="text" />
+          <Property Name="ClaimValue" Type="text" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="varchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="TestField" Type="text" />
+          <Property Name="Email" Type="varchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bool" Nullable="false" />
+          <Property Name="PasswordHash" Type="text" />
+          <Property Name="SecurityStamp" Type="text" />
+          <Property Name="PhoneNumber" Type="text" />
+          <Property Name="PhoneNumberConfirmed" Type="bool" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bool" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="timestamp" />
+          <Property Name="LockoutEnabled" Type="bool" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int4" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="MagGuardUserID" Type="int4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="billrows">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="billsid" Type="int4" />
+          <Property Name="stationid" Type="int4" />
+          <Property Name="price" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="note" Type="varchar" MaxLength="500" />
+          <Property Name="paymentperiod" Type="int4" />
+          <Property Name="periodfrom" Type="timestamp" />
+          <Property Name="periodto" Type="timestamp" />
+        </EntityType>
+        <EntityType Name="bills">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dt" Type="timestamp" />
+          <Property Name="alertsystemid" Type="int4" />
+          <Property Name="total" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="paid" Type="int4" />
+          <Property Name="number" Type="varchar" MaxLength="20" />
+          <Property Name="account" Type="varchar" MaxLength="100" />
+          <Property Name="shipping" Type="varchar" MaxLength="100" />
+          <Property Name="billing" Type="varchar" MaxLength="100" />
+          <Property Name="billcontact" Type="varchar" MaxLength="100" />
+          <Property Name="phone" Type="varchar" MaxLength="100" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="note" Type="varchar" MaxLength="500" />
+          <Property Name="kind" Type="int4" />
+        </EntityType>
+        <EntityType Name="chargestations">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stationid" Type="int4" />
+          <Property Name="kind" Type="int4" />
+          <Property Name="dcharge" Type="date" />
+        </EntityType>
+        <EntityType Name="contacts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="priority" Type="int4" />
+          <Property Name="fname" Type="varchar" MaxLength="25" />
+          <Property Name="lname" Type="varchar" MaxLength="25" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="sms" Type="varchar" MaxLength="50" />
+          <Property Name="phone1" Type="varchar" MaxLength="25" />
+          <Property Name="phone2" Type="varchar" MaxLength="25" />
+          <Property Name="phone3" Type="varchar" MaxLength="25" />
+          <Property Name="phone4" Type="varchar" MaxLength="25" />
+          <Property Name="ownid" Type="int4" />
+          <Property Name="deleted" Type="int4" />
+          <Property Name="fphone" Type="int4" />
+          <Property Name="femail" Type="int4" />
+          <Property Name="fsms" Type="int4" />
+        </EntityType>
+        <EntityType Name="customers">
+          <Key>
+            <PropertyRef Name="ownid" />
+          </Key>
+          <Property Name="ownid" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="keys" Type="int4" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="sentry" Type="int4" />
+          <Property Name="deflat" Type="numeric" Precision="15" Scale="3" />
+          <Property Name="deflong" Type="numeric" Precision="15" Scale="3" />
+          <Property Name="rrate" Type="int4" />
+          <Property Name="active" Type="int4" />
+          <Property Name="prefix" Type="varchar" MaxLength="10" />
+          <Property Name="shipping" Type="varchar" MaxLength="100" />
+          <Property Name="billing" Type="varchar" MaxLength="100" />
+          <Property Name="contact_name" Type="varchar" MaxLength="50" />
+          <Property Name="contact_pos" Type="varchar" MaxLength="50" />
+          <Property Name="contact_phone" Type="varchar" MaxLength="20" />
+          <Property Name="contact_mobile" Type="varchar" MaxLength="20" />
+          <Property Name="contact_email" Type="varchar" MaxLength="50" />
+          <Property Name="mstype" Type="int4" />
+          <Property Name="deleted" Type="int4" />
+          <Property Name="billcontact" Type="varchar" MaxLength="100" />
+          <Property Name="fixedcount" Type="int4" />
+          <Property Name="fixedprice" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="extraprice" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="tz" Type="int4" />
+          <Property Name="tformat" Type="int4" />
+          <Property Name="nopings" Type="int4" />
+        </EntityType>
+        <EntityType Name="events">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rawid" Type="int4" />
+          <Property Name="ownid" Type="int4" />
+          <Property Name="stationid" Type="int4" />
+          <Property Name="latitude" Type="numeric" Precision="7" Scale="3" />
+          <Property Name="longitude" Type="numeric" Precision="7" Scale="3" />
+          <Property Name="ibuttonid" Type="int4" />
+          <Property Name="keyholderid" Type="int4" />
+          <Property Name="status" Type="int4" />
+          <Property Name="charge" Type="int4" />
+          <Property Name="edata" Type="varchar" MaxLength="50" />
+          <Property Name="dt" Type="timestamp" />
+          <Property Name="response" Type="int4" />
+          <Property Name="response_user" Type="int4" />
+          <Property Name="response_dt" Type="timestamp" />
+          <Property Name="emailsent" Type="int4" />
+          <Property Name="eventdt" Type="timestamptz" Precision="7" />
+          <Property Name="note" Type="varchar" MaxLength="50" />
+          <Property Name="round" Type="int4" />
+        </EntityType>
+        <EntityType Name="historylog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ownid" Type="int4" />
+          <Property Name="userid" Type="int4" />
+          <Property Name="ip" Type="varchar" MaxLength="20" />
+          <Property Name="dt" Type="timestamp" />
+        </EntityType>
+        <EntityType Name="ibuttons">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="key" Type="varchar" MaxLength="16" />
+          <Property Name="ownid" Type="int4" />
+          <Property Name="active" Type="int4" />
+          <Property Name="crc" Type="varchar" MaxLength="10" />
+          <Property Name="deleted" Type="int4" />
+          <Property Name="note" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="keyholders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fname" Type="varchar" MaxLength="20" />
+          <Property Name="lname" Type="varchar" MaxLength="20" />
+          <Property Name="phone" Type="varchar" MaxLength="50" />
+          <Property Name="ownid" Type="int4" />
+          <Property Name="ibuttonid" Type="int4" />
+          <Property Name="deleted" Type="int4" />
+        </EntityType>
+        <EntityType Name="keystations">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ibuttonid" Type="int4" />
+          <Property Name="stationid" Type="int4" />
+        </EntityType>
+        <EntityType Name="notifications">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contactid" Type="int4" />
+          <Property Name="dt" Type="timestamp" />
+          <Property Name="ntype" Type="int4" />
+          <Property Name="eventid" Type="int4" />
+          <Property Name="success" Type="int4" />
+        </EntityType>
+        <EntityType Name="prop">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kind" Type="int4" />
+          <Property Name="uin" Type="int4" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="raws">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dt" Type="timestamp" />
+          <Property Name="message" Type="text" />
+          <Property Name="success" Type="int4" />
+          <Property Name="messageid" Type="varchar" MaxLength="32" />
+          <Property Name="dttz" Type="timestamptz" Precision="7" />
+        </EntityType>
+        <EntityType Name="sqllog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ownid" Type="int4" />
+          <Property Name="userid" Type="int4" />
+          <Property Name="cmd" Type="varchar" MaxLength="500" />
+          <Property Name="params" Type="varchar" MaxLength="500" />
+          <Property Name="dt" Type="timestamp" />
+          <Property Name="err" Type="int4" />
+        </EntityType>
+        <EntityType Name="stations">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ownid" Type="int4" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="location" Type="varchar" MaxLength="50" />
+          <Property Name="note" Type="varchar" MaxLength="50" />
+          <Property Name="dstart" Type="date" />
+          <Property Name="esn" Type="varchar" MaxLength="16" />
+          <Property Name="type" Type="int4" />
+          <Property Name="status" Type="int4" />
+          <Property Name="longitude" Type="numeric" Precision="7" Scale="3" />
+          <Property Name="latitude" Type="numeric" Precision="7" Scale="3" />
+          <Property Name="charge" Type="int4" />
+          <Property Name="dcharge" Type="date" />
+          <Property Name="eventid" Type="int4" />
+          <Property Name="pricing" Type="int4" />
+          <Property Name="deleted" Type="int4" />
+          <Property Name="tz" Type="int4" />
+          <Property Name="adminstatus" Type="int4" />
+          <Property Name="tzone_id" Type="int4" />
+          <Property Name="account_type" Type="int4" />
+          <Property Name="paymentperiod" Type="int4" />
+          <Property Name="isnoping" Type="bool" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'magguarddb.public.tmp_actlog' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tmp_actlog">
+          <Property Name="id" Type="int4" />
+          <Property Name="ownid" Type="int4" />
+          <Property Name="userid" Type="int4" />
+          <Property Name="cmd" Type="varchar" MaxLength="500" />
+          <Property Name="uname" Type="varchar" MaxLength="50" />
+          <Property Name="dt" Type="timestamp" />
+          <Property Name="total" Type="int4" />
+          <Property Name="err" Type="int4" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'magguarddb.public.tmp_alertcontacts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tmp_alertcontacts">
+          <Key>
+            <PropertyRef Name="nr" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="nr" Type="int4" Nullable="false" />
+          <Property Name="id" Type="int4" Nullable="false" />
+          <Property Name="priority" Type="int4" />
+          <Property Name="fname" Type="varchar" MaxLength="25" />
+          <Property Name="lname" Type="varchar" MaxLength="25" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="sms" Type="varchar" MaxLength="50" />
+          <Property Name="phone1" Type="varchar" MaxLength="25" />
+          <Property Name="phone2" Type="varchar" MaxLength="25" />
+          <Property Name="phone3" Type="varchar" MaxLength="25" />
+          <Property Name="phone4" Type="varchar" MaxLength="25" />
+          <Property Name="ownid" Type="int4" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'magguarddb.public.tmp_alerts' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tmp_alerts">
+          <Property Name="id" Type="int4" />
+          <Property Name="location" Type="varchar" MaxLength="200" />
+          <Property Name="dt_new" Type="varchar" MaxLength="20" />
+          <Property Name="respondby" Type="varchar" MaxLength="200" />
+          <Property Name="note" Type="varchar" MaxLength="200" />
+          <Property Name="response" Type="int4" />
+          <Property Name="stationid" Type="int4" />
+          <Property Name="edata" Type="varchar" MaxLength="30" />
+          <Property Name="notif" Type="varchar" MaxLength="1000" />
+          <Property Name="rawid" Type="int4" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'magguarddb.public.tmp_alertsystemsforstation' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tmp_alertsystemsforstation">
+          <Property Name="id" Type="int4" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="chk" Type="bool" />
+          <Property Name="alertcontactid" Type="int4" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'magguarddb.public.tmp_batteries' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tmp_batteries">
+          <Property Name="esn" Type="varchar" MaxLength="20" />
+          <Property Name="kind" Type="int4" />
+          <Property Name="dcharge" Type="varchar" MaxLength="20" />
+          <Property Name="ticks" Type="int4" />
+          <Property Name="name" Type="varchar" MaxLength="30" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'magguarddb.public.tmp_billing' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tmp_billing">
+          <Property Name="ownid" Type="int4" />
+          <Property Name="date_from" Type="varchar" MaxLength="20" />
+          <Property Name="date_to" Type="varchar" MaxLength="20" />
+          <Property Name="fixedcount" Type="int4" />
+          <Property Name="fixedprice" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="extraprice" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="pingfixed" Type="int4" />
+          <Property Name="pingextra" Type="int4" />
+          <Property Name="cost_fixed" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="cost_extra" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="cost_total" Type="numeric" Precision="15" Scale="2" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'magguarddb.public.tmp_billsystems' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tmp_billsystems">
+          <Property Name="company" Type="varchar" MaxLength="100" />
+          <Property Name="esn" Type="varchar" MaxLength="20" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'magguarddb.public.tmp_calllog' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tmp_calllog">
+          <Property Name="id" Type="int4" />
+          <Property Name="customer" Type="varchar" MaxLength="100" />
+          <Property Name="esn" Type="varchar" MaxLength="20" />
+          <Property Name="location" Type="varchar" MaxLength="50" />
+          <Property Name="dt" Type="varchar" MaxLength="50" />
+          <Property Name="dtcall" Type="varchar" MaxLength="50" />
+          <Property Name="delta" Type="int4" />
+          <Property Name="dtcallend" Type="varchar" MaxLength="50" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'magguarddb.public.tmp_events' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tmp_events">
+          <Property Name="id" Type="int4" />
+          <Property Name="rawid" Type="int4" />
+          <Property Name="ownid" Type="int4" />
+          <Property Name="dt" Type="varchar" MaxLength="20" />
+          <Property Name="sname" Type="varchar" MaxLength="50" />
+          <Property Name="iname" Type="varchar" MaxLength="50" />
+          <Property Name="kname" Type="varchar" MaxLength="50" />
+          <Property Name="stationid" Type="int4" />
+          <Property Name="latitude" Type="numeric" Precision="7" Scale="3" />
+          <Property Name="longitude" Type="numeric" Precision="7" Scale="3" />
+          <Property Name="ibuttonid" Type="int4" />
+          <Property Name="keyholderid" Type="int4" />
+          <Property Name="status" Type="int4" />
+          <Property Name="charge" Type="int4" />
+          <Property Name="edata" Type="varchar" MaxLength="50" />
+          <Property Name="total" Type="int4" />
+          <Property Name="esn" Type="varchar" MaxLength="20" />
+          <Property Name="location" Type="varchar" MaxLength="50" />
+          <Property Name="response" Type="int4" />
+          <Property Name="type" Type="int4" />
+          <Property Name="emailsent" Type="int4" />
+          <Property Name="eventdt" Type="timestamptz" Precision="7" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'magguarddb.public.tmp_eventsreport' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tmp_eventsreport">
+          <Property Name="dt" Type="timestamp" />
+          <Property Name="station" Type="varchar" MaxLength="50" />
+          <Property Name="keyholder" Type="varchar" MaxLength="50" />
+          <Property Name="event" Type="varchar" MaxLength="50" />
+        </EntityType>-->
+        <EntityType Name="tmp_ibuttons">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" Nullable="false" />
+          <Property Name="key" Type="varchar" MaxLength="16" />
+          <Property Name="ownid" Type="int4" />
+          <Property Name="active" Type="int4" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="keyholderid" Type="int4" />
+          <Property Name="crc" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'magguarddb.public.tmp_import' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tmp_import">
+          <Property Name="success" Type="int4" />
+          <Property Name="message" Type="varchar" MaxLength="8000" />
+        </EntityType>-->
+        <EntityType Name="tmp_keyholders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" Nullable="false" />
+          <Property Name="fname" Type="varchar" MaxLength="20" />
+          <Property Name="lname" Type="varchar" MaxLength="20" />
+          <Property Name="phone" Type="varchar" MaxLength="50" />
+          <Property Name="ownid" Type="int4" />
+          <Property Name="ibuttonid" Type="int4" />
+          <Property Name="ibutton" Type="varchar" MaxLength="20" />
+          <Property Name="days" Type="int4" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'magguarddb.public.tmp_keystations' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tmp_keystations">
+          <Property Name="ibuttonid" Type="int4" />
+          <Property Name="stationid" Type="int4" />
+          <Property Name="key" Type="varchar" MaxLength="16" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>-->
+        <EntityType Name="tmp_list">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'magguarddb.public.tmp_log' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tmp_log">
+          <Property Name="id" Type="int4" />
+          <Property Name="ownid" Type="int4" />
+          <Property Name="userid" Type="int4" />
+          <Property Name="cmd" Type="varchar" MaxLength="500" />
+          <Property Name="uname" Type="varchar" MaxLength="50" />
+          <Property Name="dt" Type="varchar" MaxLength="50" />
+          <Property Name="total" Type="int4" />
+          <Property Name="err" Type="int4" />
+          <Property Name="customer" Type="varchar" MaxLength="100" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'magguarddb.public.tmp_raws' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tmp_raws">
+          <Property Name="id" Type="int4" />
+          <Property Name="total" Type="int4" />
+          <Property Name="message" Type="text" />
+          <Property Name="success" Type="int4" />
+          <Property Name="dt" Type="varchar" MaxLength="8000" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'magguarddb.public.tmp_stations' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tmp_stations">
+          <Property Name="id" Type="int4" />
+          <Property Name="ownid" Type="int4" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="location" Type="varchar" MaxLength="50" />
+          <Property Name="note" Type="varchar" MaxLength="50" />
+          <Property Name="dstart" Type="date" />
+          <Property Name="esn" Type="varchar" MaxLength="16" />
+          <Property Name="type" Type="int4" />
+          <Property Name="status" Type="int4" />
+          <Property Name="longitude" Type="numeric" Precision="7" Scale="3" />
+          <Property Name="latitude" Type="numeric" Precision="7" Scale="3" />
+          <Property Name="charge" Type="int4" />
+          <Property Name="dcharge" Type="date" />
+          <Property Name="eventid" Type="int4" />
+          <Property Name="event_dt" Type="timestamp" />
+          <Property Name="event_status" Type="int4" />
+          <Property Name="event_ibutton" Type="varchar" MaxLength="50" />
+          <Property Name="event_keyholder" Type="varchar" MaxLength="50" />
+          <Property Name="event_days" Type="int4" />
+          <Property Name="pricing" Type="int4" />
+          <Property Name="alertsystemname" Type="varchar" MaxLength="50" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'magguarddb.public.tmp_summary' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tmp_summary">
+          <Property Name="ping_msg" Type="int4" />
+          <Property Name="stat_msg" Type="int4" />
+          <Property Name="alarm_msg" Type="int4" />
+          <Property Name="door_msg" Type="int4" />
+          <Property Name="other_msg" Type="int4" />
+          <Property Name="total_msg" Type="int4" />
+          <Property Name="f_phone" Type="int4" />
+          <Property Name="s_phone" Type="int4" />
+          <Property Name="total_phone" Type="int4" />
+          <Property Name="sms_sent" Type="int4" />
+          <Property Name="email_sent" Type="int4" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'magguarddb.public.tmp_treestations' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tmp_treestations">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" Nullable="false" />
+          <Property Name="ownid" Type="int4" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="location" Type="varchar" MaxLength="50" />
+          <Property Name="note" Type="varchar" MaxLength="50" />
+          <Property Name="dstart" Type="date" />
+          <Property Name="esn" Type="varchar" MaxLength="16" />
+          <Property Name="type" Type="int4" />
+          <Property Name="status" Type="int4" />
+          <Property Name="longitude" Type="numeric" Precision="7" Scale="3" />
+          <Property Name="latitude" Type="numeric" Precision="7" Scale="3" />
+          <Property Name="charge" Type="int4" />
+          <Property Name="dcharge" Type="date" />
+          <Property Name="devent" Type="timestamp" />
+          <Property Name="alertsystemid" Type="int4" />
+          <Property Name="alertname" Type="varchar" MaxLength="50" />
+          <Property Name="event_dt" Type="timestamp" />
+          <Property Name="event_status" Type="int4" />
+          <Property Name="event_ibutton" Type="varchar" MaxLength="50" />
+          <Property Name="event_keyholder" Type="varchar" MaxLength="50" />
+          <Property Name="event_days" Type="int4" />
+          <Property Name="pricing" Type="int4" />
+          <Property Name="event_dt2" Type="varchar" MaxLength="20" />
+          <Property Name="uniqueid" Type="int4" />
+          <Property Name="parentid" Type="int4" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'magguarddb.public.tmp_users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tmp_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="8000" />
+          <Property Name="username" Type="varchar" MaxLength="8000" />
+          <Property Name="password" Type="varchar" MaxLength="8000" />
+          <Property Name="acclevel" Type="int4" />
+          <Property Name="deleted" Type="int4" />
+          <Property Name="active" Type="int4" />
+          <Property Name="phone" Type="varchar" MaxLength="50" />
+          <Property Name="mobile" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="ownid" Type="int4" />
+          <Property Name="accword" Type="varchar" MaxLength="40" />
+          <Property Name="alertsystems" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tmp_warns">
+          <Key>
+            <PropertyRef Name="alert" />
+          </Key>
+          <Property Name="low" Type="int4" />
+          <Property Name="noresp" Type="int4" />
+          <Property Name="alert" Type="int4" Nullable="false" />
+          <Property Name="rrate" Type="int4" />
+        </EntityType>
+        <EntityType Name="tzone">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="shift" Type="interval" Precision="6" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" />
+          <Property Name="username" Type="varchar" MaxLength="200" />
+          <Property Name="password" Type="varchar" MaxLength="200" />
+          <Property Name="acclevel" Type="int4" />
+          <Property Name="deleted" Type="int4" />
+          <Property Name="active" Type="int4" />
+          <Property Name="phone" Type="varchar" MaxLength="50" />
+          <Property Name="mobile" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="ownid" Type="int4" />
+          <Property Name="accword" Type="varchar" MaxLength="40" />
+          <Property Name="chgpassword" Type="int4" />
+          <Property Name="alertcontactid" Type="int4" />
+          <Property Name="otheruser" Type="int4" />
+          <Property Name="fname" Type="varchar" MaxLength="20" />
+          <Property Name="lname" Type="varchar" MaxLength="20" />
+          <Property Name="parentuser" Type="int4" />
+          <Property Name="tzone_id" Type="int4" />
+          <Property Name="tz" Type="int4" />
+        </EntityType>
+        <Association Name="billrows_billsid_fkey">
+          <End Role="bills" Type="Self.bills" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="billrows" Type="Self.billrows" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bills">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="billrows">
+              <PropertyRef Name="billsid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_public_AspNetUserClaims_public_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_public_AspNetUserLogins_public_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_public_AspNetUserRoles_public_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_public_AspNetUserRoles_public_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_public_AspNetUsers_public_users_MagGuardUserID">
+          <End Role="users" Type="Self.users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="MagGuardUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="magguarddbModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="public" store:Type="Tables" />
+          <EntitySet Name="_test" EntityType="Self._test" Schema="public" store:Type="Tables" />
+          <EntitySet Name="actlog" EntityType="Self.actlog" Schema="public" store:Type="Tables" />
+          <EntitySet Name="alertcampaign" EntityType="Self.alertcampaign" Schema="public" store:Type="Tables" />
+          <EntitySet Name="alertcontacts" EntityType="Self.alertcontacts" Schema="public" store:Type="Tables" />
+          <EntitySet Name="alertprices" EntityType="Self.alertprices" Schema="public" store:Type="Tables" />
+          <EntitySet Name="alertstations" EntityType="Self.alertstations" Schema="public" store:Type="Tables" />
+          <EntitySet Name="alertsystems" EntityType="Self.alertsystems" Schema="public" store:Type="Tables" />
+          <EntitySet Name="alertsystemsadress" EntityType="Self.alertsystemsadress" Schema="public" store:Type="Tables" />
+          <EntitySet Name="alertusers" EntityType="Self.alertusers" Schema="public" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="public" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="public" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="public" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="public" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="public" store:Type="Tables" />
+          <EntitySet Name="billrows" EntityType="Self.billrows" Schema="public" store:Type="Tables" />
+          <EntitySet Name="bills" EntityType="Self.bills" Schema="public" store:Type="Tables" />
+          <EntitySet Name="chargestations" EntityType="Self.chargestations" Schema="public" store:Type="Tables" />
+          <EntitySet Name="contacts" EntityType="Self.contacts" Schema="public" store:Type="Tables" />
+          <EntitySet Name="customers" EntityType="Self.customers" Schema="public" store:Type="Tables" />
+          <EntitySet Name="events" EntityType="Self.events" Schema="public" store:Type="Tables" />
+          <EntitySet Name="historylog" EntityType="Self.historylog" Schema="public" store:Type="Tables" />
+          <EntitySet Name="ibuttons" EntityType="Self.ibuttons" Schema="public" store:Type="Tables" />
+          <EntitySet Name="keyholders" EntityType="Self.keyholders" Schema="public" store:Type="Tables" />
+          <EntitySet Name="keystations" EntityType="Self.keystations" Schema="public" store:Type="Tables" />
+          <EntitySet Name="notifications" EntityType="Self.notifications" Schema="public" store:Type="Tables" />
+          <EntitySet Name="prop" EntityType="Self.prop" Schema="public" store:Type="Tables" />
+          <EntitySet Name="raws" EntityType="Self.raws" Schema="public" store:Type="Tables" />
+          <EntitySet Name="sqllog" EntityType="Self.sqllog" Schema="public" store:Type="Tables" />
+          <EntitySet Name="stations" EntityType="Self.stations" Schema="public" store:Type="Tables" />
+          <EntitySet Name="tmp_ibuttons" EntityType="Self.tmp_ibuttons" Schema="public" store:Type="Tables" />
+          <EntitySet Name="tmp_keyholders" EntityType="Self.tmp_keyholders" Schema="public" store:Type="Tables" />
+          <EntitySet Name="tmp_list" EntityType="Self.tmp_list" Schema="public" store:Type="Tables" />
+          <EntitySet Name="tmp_warns" EntityType="Self.tmp_warns" Schema="public" store:Type="Tables" />
+          <EntitySet Name="tzone" EntityType="Self.tzone" Schema="public" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="public" store:Type="Tables" />
+          <EntitySet Name="tmp_alertcontacts" EntityType="Self.tmp_alertcontacts" store:Type="Tables" store:Schema="public">
+            <DefiningQuery>SELECT "tmp_alertcontacts"."nr", "tmp_alertcontacts"."id", "tmp_alertcontacts"."priority", "tmp_alertcontacts"."fname", "tmp_alertcontacts"."lname", "tmp_alertcontacts"."email", "tmp_alertcontacts"."sms", "tmp_alertcontacts"."phone1", "tmp_alertcontacts"."phone2", "tmp_alertcontacts"."phone3", "tmp_alertcontacts"."phone4", "tmp_alertcontacts"."ownid" FROM "public"."tmp_alertcontacts" AS "tmp_alertcontacts"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tmp_treestations" EntityType="Self.tmp_treestations" store:Type="Tables" store:Schema="public">
+            <DefiningQuery>SELECT "tmp_treestations"."id", "tmp_treestations"."ownid", "tmp_treestations"."name", "tmp_treestations"."location", "tmp_treestations"."note", "tmp_treestations"."dstart", "tmp_treestations"."esn", "tmp_treestations"."type", "tmp_treestations"."status", "tmp_treestations"."longitude", "tmp_treestations"."latitude", "tmp_treestations"."charge", "tmp_treestations"."dcharge", "tmp_treestations"."devent", "tmp_treestations"."alertsystemid", "tmp_treestations"."alertname", "tmp_treestations"."event_dt", "tmp_treestations"."event_status", "tmp_treestations"."event_ibutton", "tmp_treestations"."event_keyholder", "tmp_treestations"."event_days", "tmp_treestations"."pricing", "tmp_treestations"."event_dt2", "tmp_treestations"."uniqueid", "tmp_treestations"."parentid" FROM "public"."tmp_treestations" AS "tmp_treestations"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tmp_users" EntityType="Self.tmp_users" store:Type="Tables" store:Schema="public">
+            <DefiningQuery>SELECT "tmp_users"."id", "tmp_users"."name", "tmp_users"."username", "tmp_users"."password", "tmp_users"."acclevel", "tmp_users"."deleted", "tmp_users"."active", "tmp_users"."phone", "tmp_users"."mobile", "tmp_users"."email", "tmp_users"."ownid", "tmp_users"."accword", "tmp_users"."alertsystems" FROM "public"."tmp_users" AS "tmp_users"</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="billrows_billsid_fkey" Association="Self.billrows_billsid_fkey">
+            <End Role="bills" EntitySet="bills" />
+            <End Role="billrows" EntitySet="billrows" />
+          </AssociationSet>
+          <AssociationSet Name="FK_public_AspNetUserClaims_public_AspNetUsers_UserId" Association="Self.FK_public_AspNetUserClaims_public_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_public_AspNetUserLogins_public_AspNetUsers_UserId" Association="Self.FK_public_AspNetUserLogins_public_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_public_AspNetUserRoles_public_AspNetRoles_RoleId" Association="Self.FK_public_AspNetUserRoles_public_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_public_AspNetUserRoles_public_AspNetUsers_UserId" Association="Self.FK_public_AspNetUserRoles_public_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_public_AspNetUsers_public_users_MagGuardUserID" Association="Self.FK_public_AspNetUsers_public_users_MagGuardUserID">
+            <End Role="users" EntitySet="users" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="magguarddbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C_test">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dt" Type="DateTimeOffset" Precision="7" />
+          <Property Name="aa" Type="Int32" />
+        </EntityType>
+        <EntityType Name="actlog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ownid" Type="Int32" />
+          <Property Name="userid" Type="Int32" />
+          <Property Name="cmd" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="dt" Type="DateTime" Precision="6" />
+          <Property Name="err" Type="Int32" />
+          <Property Name="entity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="entityid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="alertcampaign">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="eventid" Type="Int32" />
+          <Property Name="contactid" Type="Int32" />
+          <Property Name="phone" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="nr" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="modtime" Type="DateTime" Precision="6" />
+          <Property Name="calls" Type="Int32" />
+          <Property Name="deleted" Type="Int32" />
+          <Property Name="sname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dt" Type="DateTime" Precision="6" />
+        </EntityType>
+        <EntityType Name="alertcontact">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="alertsystemid" Type="Int32" />
+          <Property Name="contactid" Type="Int32" />
+          <Property Name="nr" Type="Int32" />
+        </EntityType>
+        <EntityType Name="alertprice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="alertsystemid" Type="Int32" />
+          <Property Name="account_type" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="15" Scale="2" />
+        </EntityType>
+        <EntityType Name="alertstation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="alertsystemid" Type="Int32" />
+          <Property Name="stationid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="alertsystem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ownid" Type="Int32" />
+          <Property Name="active" Type="Int32" />
+          <Property Name="deleted" Type="Int32" />
+          <Property Name="account" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="shipping" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="billing" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="billcontact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="alertsystemsadress">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="alertsystemid" Type="Int32" />
+          <Property Name="account" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="shipping" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="billing" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="billcontact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="kind" Type="Int32" />
+        </EntityType>
+        <EntityType Name="alertuser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="alertsystemid" Type="Int32" />
+          <Property Name="userid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="billrow">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="billsid" Type="Int32" />
+          <Property Name="stationid" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="paymentperiod" Type="Int32" />
+          <Property Name="periodfrom" Type="DateTime" Precision="6" />
+          <Property Name="periodto" Type="DateTime" Precision="6" />
+          <NavigationProperty Name="bill" Relationship="Self.billrows_billsid_fkey" FromRole="billrows" ToRole="bills" />
+        </EntityType>
+        <EntityType Name="bill">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dt" Type="DateTime" Precision="6" />
+          <Property Name="alertsystemid" Type="Int32" />
+          <Property Name="total" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="paid" Type="Int32" />
+          <Property Name="number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="account" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="shipping" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="billing" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="billcontact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="kind" Type="Int32" />
+          <NavigationProperty Name="billrows" Relationship="Self.billrows_billsid_fkey" FromRole="bills" ToRole="billrows" />
+        </EntityType>
+        <EntityType Name="chargestation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stationid" Type="Int32" />
+          <Property Name="kind" Type="Int32" />
+          <Property Name="dcharge" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="contact">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="priority" Type="Int32" />
+          <Property Name="fname" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="lname" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sms" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone1" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="phone2" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="phone3" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="phone4" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="ownid" Type="Int32" />
+          <Property Name="deleted" Type="Int32" />
+          <Property Name="fphone" Type="Int32" />
+          <Property Name="femail" Type="Int32" />
+          <Property Name="fsms" Type="Int32" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="ownid" />
+          </Key>
+          <Property Name="ownid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="keys" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sentry" Type="Int32" />
+          <Property Name="deflat" Type="Decimal" Precision="15" Scale="3" />
+          <Property Name="deflong" Type="Decimal" Precision="15" Scale="3" />
+          <Property Name="rrate" Type="Int32" />
+          <Property Name="active" Type="Int32" />
+          <Property Name="prefix" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="shipping" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="billing" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="contact_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contact_pos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contact_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="contact_mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="contact_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mstype" Type="Int32" />
+          <Property Name="deleted" Type="Int32" />
+          <Property Name="billcontact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fixedcount" Type="Int32" />
+          <Property Name="fixedprice" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="extraprice" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="tz" Type="Int32" />
+          <Property Name="tformat" Type="Int32" />
+          <Property Name="nopings" Type="Int32" />
+        </EntityType>
+        <EntityType Name="event">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rawid" Type="Int32" />
+          <Property Name="ownid" Type="Int32" />
+          <Property Name="stationid" Type="Int32" />
+          <Property Name="latitude" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="longitude" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ibuttonid" Type="Int32" />
+          <Property Name="keyholderid" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="charge" Type="Int32" />
+          <Property Name="edata" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dt" Type="DateTime" Precision="6" />
+          <Property Name="response" Type="Int32" />
+          <Property Name="response_user" Type="Int32" />
+          <Property Name="response_dt" Type="DateTime" Precision="6" />
+          <Property Name="emailsent" Type="Int32" />
+          <Property Name="eventdt" Type="DateTimeOffset" Precision="7" />
+          <Property Name="note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="round" Type="Int32" />
+        </EntityType>
+        <EntityType Name="historylog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ownid" Type="Int32" />
+          <Property Name="userid" Type="Int32" />
+          <Property Name="ip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="dt" Type="DateTime" Precision="6" />
+        </EntityType>
+        <EntityType Name="ibutton">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="key" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="ownid" Type="Int32" />
+          <Property Name="active" Type="Int32" />
+          <Property Name="crc" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="deleted" Type="Int32" />
+          <Property Name="note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="keyholder">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="lname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ownid" Type="Int32" />
+          <Property Name="ibuttonid" Type="Int32" />
+          <Property Name="deleted" Type="Int32" />
+        </EntityType>
+        <EntityType Name="keystation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ibuttonid" Type="Int32" />
+          <Property Name="stationid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="notification">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contactid" Type="Int32" />
+          <Property Name="dt" Type="DateTime" Precision="6" />
+          <Property Name="ntype" Type="Int32" />
+          <Property Name="eventid" Type="Int32" />
+          <Property Name="success" Type="Int32" />
+        </EntityType>
+        <EntityType Name="prop">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kind" Type="Int32" />
+          <Property Name="uin" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="raw">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dt" Type="DateTime" Precision="6" />
+          <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="success" Type="Int32" />
+          <Property Name="messageid" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="dttz" Type="DateTimeOffset" Precision="7" />
+        </EntityType>
+        <EntityType Name="sqllog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ownid" Type="Int32" />
+          <Property Name="userid" Type="Int32" />
+          <Property Name="cmd" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="params" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="dt" Type="DateTime" Precision="6" />
+          <Property Name="err" Type="Int32" />
+        </EntityType>
+        <EntityType Name="station">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ownid" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dstart" Type="DateTime" Precision="0" />
+          <Property Name="esn" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="longitude" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="latitude" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="charge" Type="Int32" />
+          <Property Name="dcharge" Type="DateTime" Precision="0" />
+          <Property Name="eventid" Type="Int32" />
+          <Property Name="pricing" Type="Int32" />
+          <Property Name="deleted" Type="Int32" />
+          <Property Name="tz" Type="Int32" />
+          <Property Name="adminstatus" Type="Int32" />
+          <Property Name="tzone_id" Type="Int32" />
+          <Property Name="account_type" Type="Int32" />
+          <Property Name="paymentperiod" Type="Int32" />
+          <Property Name="isnoping" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tmp_ibuttons">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="key" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="ownid" Type="Int32" />
+          <Property Name="active" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="keyholderid" Type="Int32" />
+          <Property Name="crc" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tmp_keyholders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="fname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="lname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ownid" Type="Int32" />
+          <Property Name="ibuttonid" Type="Int32" />
+          <Property Name="ibutton" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="days" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tmp_list">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tmp_warns">
+          <Key>
+            <PropertyRef Name="alert" />
+          </Key>
+          <Property Name="low" Type="Int32" />
+          <Property Name="noresp" Type="Int32" />
+          <Property Name="alert" Type="Int32" Nullable="false" />
+          <Property Name="rrate" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tzone">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="shift" Type="Time" Precision="6" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="acclevel" Type="Int32" />
+          <Property Name="deleted" Type="Int32" />
+          <Property Name="active" Type="Int32" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ownid" Type="Int32" />
+          <Property Name="accword" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="chgpassword" Type="Int32" />
+          <Property Name="alertcontactid" Type="Int32" />
+          <Property Name="otheruser" Type="Int32" />
+          <Property Name="fname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="lname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="parentuser" Type="Int32" />
+          <Property Name="tzone_id" Type="Int32" />
+          <Property Name="tz" Type="Int32" />
+          <NavigationProperty Name="AspNetUsers" Relationship="magguarddbModel.FK_public_AspNetUsers_public_users_MagGuardUserID" FromRole="user" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="tmp_alertcontacts">
+          <Key>
+            <PropertyRef Name="nr" />
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="nr" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="priority" Type="Int32" />
+          <Property Name="fname" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="lname" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sms" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone1" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="phone2" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="phone3" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="phone4" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="ownid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tmp_treestations">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="ownid" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dstart" Type="DateTime" Precision="0" />
+          <Property Name="esn" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="longitude" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="latitude" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="charge" Type="Int32" />
+          <Property Name="dcharge" Type="DateTime" Precision="0" />
+          <Property Name="devent" Type="DateTime" Precision="6" />
+          <Property Name="alertsystemid" Type="Int32" />
+          <Property Name="alertname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="event_dt" Type="DateTime" Precision="6" />
+          <Property Name="event_status" Type="Int32" />
+          <Property Name="event_ibutton" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="event_keyholder" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="event_days" Type="Int32" />
+          <Property Name="pricing" Type="Int32" />
+          <Property Name="event_dt2" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="uniqueid" Type="Int32" />
+          <Property Name="parentid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tmp_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="8000" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="8000" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="8000" FixedLength="false" Unicode="true" />
+          <Property Name="acclevel" Type="Int32" />
+          <Property Name="deleted" Type="Int32" />
+          <Property Name="active" Type="Int32" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ownid" Type="Int32" />
+          <Property Name="accword" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="alertsystems" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="billrows_billsid_fkey">
+          <End Role="bills" Type="Self.bill" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="billrows" Type="Self.billrow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bills">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="billrows">
+              <PropertyRef Name="billsid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBModels" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C_test" EntityType="Self.C_test" />
+          <EntitySet Name="actlogs" EntityType="Self.actlog" />
+          <EntitySet Name="alertcampaigns" EntityType="Self.alertcampaign" />
+          <EntitySet Name="alertcontacts" EntityType="Self.alertcontact" />
+          <EntitySet Name="alertprices" EntityType="Self.alertprice" />
+          <EntitySet Name="alertstations" EntityType="Self.alertstation" />
+          <EntitySet Name="alertsystems" EntityType="Self.alertsystem" />
+          <EntitySet Name="alertsystemsadresses" EntityType="Self.alertsystemsadress" />
+          <EntitySet Name="alertusers" EntityType="Self.alertuser" />
+          <EntitySet Name="billrows" EntityType="Self.billrow" />
+          <EntitySet Name="bills" EntityType="Self.bill" />
+          <EntitySet Name="chargestations" EntityType="Self.chargestation" />
+          <EntitySet Name="contacts" EntityType="Self.contact" />
+          <EntitySet Name="customers" EntityType="Self.customer" />
+          <EntitySet Name="events" EntityType="Self.event" />
+          <EntitySet Name="historylogs" EntityType="Self.historylog" />
+          <EntitySet Name="ibuttons" EntityType="Self.ibutton" />
+          <EntitySet Name="keyholders" EntityType="Self.keyholder" />
+          <EntitySet Name="keystations" EntityType="Self.keystation" />
+          <EntitySet Name="notifications" EntityType="Self.notification" />
+          <EntitySet Name="props" EntityType="Self.prop" />
+          <EntitySet Name="raws" EntityType="Self.raw" />
+          <EntitySet Name="sqllogs" EntityType="Self.sqllog" />
+          <EntitySet Name="stations" EntityType="Self.station" />
+          <EntitySet Name="tmp_ibuttons" EntityType="Self.tmp_ibuttons" />
+          <EntitySet Name="tmp_keyholders" EntityType="Self.tmp_keyholders" />
+          <EntitySet Name="tmp_list" EntityType="Self.tmp_list" />
+          <EntitySet Name="tmp_warns" EntityType="Self.tmp_warns" />
+          <EntitySet Name="tzones" EntityType="Self.tzone" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="tmp_alertcontacts" EntityType="Self.tmp_alertcontacts" />
+          <EntitySet Name="tmp_treestations" EntityType="Self.tmp_treestations" />
+          <EntitySet Name="tmp_users" EntityType="Self.tmp_users" />
+          <AssociationSet Name="billrows_billsid_fkey" Association="Self.billrows_billsid_fkey">
+            <End Role="bills" EntitySet="bills" />
+            <End Role="billrows" EntitySet="billrows" />
+          </AssociationSet>
+          <EntitySet Name="C__MigrationHistory" EntityType="magguarddbModel.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="magguarddbModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="magguarddbModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="magguarddbModel.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="magguarddbModel.AspNetUser" />
+          <AssociationSet Name="FK_public_AspNetUserClaims_public_AspNetUsers_UserId" Association="magguarddbModel.FK_public_AspNetUserClaims_public_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_public_AspNetUserLogins_public_AspNetUsers_UserId" Association="magguarddbModel.FK_public_AspNetUserLogins_public_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_public_AspNetUsers_public_users_MagGuardUserID" Association="magguarddbModel.FK_public_AspNetUsers_public_users_MagGuardUserID">
+            <End Role="user" EntitySet="users" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="magguarddbModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="2147483647" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="magguarddbModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="magguarddbModel.FK_public_AspNetUserClaims_public_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="magguarddbModel.FK_public_AspNetUserLogins_public_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TestField" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="6" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="MagGuardUserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="magguarddbModel.FK_public_AspNetUserClaims_public_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="magguarddbModel.FK_public_AspNetUserLogins_public_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="user" Relationship="magguarddbModel.FK_public_AspNetUsers_public_users_MagGuardUserID" FromRole="AspNetUser" ToRole="user" />
+          <NavigationProperty Name="AspNetRoles" Relationship="magguarddbModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+        </EntityType>
+        <Association Name="FK_public_AspNetUserClaims_public_AspNetUsers_UserId">
+          <End Type="magguarddbModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="magguarddbModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_public_AspNetUserLogins_public_AspNetUsers_UserId">
+          <End Type="magguarddbModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="magguarddbModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_public_AspNetUsers_public_users_MagGuardUserID">
+          <End Type="magguarddbModel.user" Role="user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="magguarddbModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AspNetUser">
+              <PropertyRef Name="MagGuardUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="magguarddbModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="magguarddbModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="magguarddbModelStoreContainer" CdmEntityContainer="DBModels">
+          <EntitySetMapping Name="C_test">
+            <EntityTypeMapping TypeName="magguarddbModel.C_test">
+              <MappingFragment StoreEntitySet="_test">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="dt" ColumnName="dt" />
+                <ScalarProperty Name="aa" ColumnName="aa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="actlogs">
+            <EntityTypeMapping TypeName="magguarddbModel.actlog">
+              <MappingFragment StoreEntitySet="actlog">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ownid" ColumnName="ownid" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="cmd" ColumnName="cmd" />
+                <ScalarProperty Name="dt" ColumnName="dt" />
+                <ScalarProperty Name="err" ColumnName="err" />
+                <ScalarProperty Name="entity" ColumnName="entity" />
+                <ScalarProperty Name="entityid" ColumnName="entityid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="alertcampaigns">
+            <EntityTypeMapping TypeName="magguarddbModel.alertcampaign">
+              <MappingFragment StoreEntitySet="alertcampaign">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="eventid" ColumnName="eventid" />
+                <ScalarProperty Name="contactid" ColumnName="contactid" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="nr" ColumnName="nr" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="modtime" ColumnName="modtime" />
+                <ScalarProperty Name="calls" ColumnName="calls" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="sname" ColumnName="sname" />
+                <ScalarProperty Name="dt" ColumnName="dt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="alertcontacts">
+            <EntityTypeMapping TypeName="magguarddbModel.alertcontact">
+              <MappingFragment StoreEntitySet="alertcontacts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="alertsystemid" ColumnName="alertsystemid" />
+                <ScalarProperty Name="contactid" ColumnName="contactid" />
+                <ScalarProperty Name="nr" ColumnName="nr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="alertprices">
+            <EntityTypeMapping TypeName="magguarddbModel.alertprice">
+              <MappingFragment StoreEntitySet="alertprices">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="alertsystemid" ColumnName="alertsystemid" />
+                <ScalarProperty Name="account_type" ColumnName="account_type" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="alertstations">
+            <EntityTypeMapping TypeName="magguarddbModel.alertstation">
+              <MappingFragment StoreEntitySet="alertstations">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="alertsystemid" ColumnName="alertsystemid" />
+                <ScalarProperty Name="stationid" ColumnName="stationid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="alertsystems">
+            <EntityTypeMapping TypeName="magguarddbModel.alertsystem">
+              <MappingFragment StoreEntitySet="alertsystems">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="ownid" ColumnName="ownid" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="shipping" ColumnName="shipping" />
+                <ScalarProperty Name="billing" ColumnName="billing" />
+                <ScalarProperty Name="billcontact" ColumnName="billcontact" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="alertsystemsadresses">
+            <EntityTypeMapping TypeName="magguarddbModel.alertsystemsadress">
+              <MappingFragment StoreEntitySet="alertsystemsadress">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="alertsystemid" ColumnName="alertsystemid" />
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="shipping" ColumnName="shipping" />
+                <ScalarProperty Name="billing" ColumnName="billing" />
+                <ScalarProperty Name="billcontact" ColumnName="billcontact" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="kind" ColumnName="kind" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="alertusers">
+            <EntityTypeMapping TypeName="magguarddbModel.alertuser">
+              <MappingFragment StoreEntitySet="alertusers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="alertsystemid" ColumnName="alertsystemid" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="billrows">
+            <EntityTypeMapping TypeName="magguarddbModel.billrow">
+              <MappingFragment StoreEntitySet="billrows">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="billsid" ColumnName="billsid" />
+                <ScalarProperty Name="stationid" ColumnName="stationid" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="paymentperiod" ColumnName="paymentperiod" />
+                <ScalarProperty Name="periodfrom" ColumnName="periodfrom" />
+                <ScalarProperty Name="periodto" ColumnName="periodto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bills">
+            <EntityTypeMapping TypeName="magguarddbModel.bill">
+              <MappingFragment StoreEntitySet="bills">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="dt" ColumnName="dt" />
+                <ScalarProperty Name="alertsystemid" ColumnName="alertsystemid" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="paid" ColumnName="paid" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="shipping" ColumnName="shipping" />
+                <ScalarProperty Name="billing" ColumnName="billing" />
+                <ScalarProperty Name="billcontact" ColumnName="billcontact" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="kind" ColumnName="kind" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chargestations">
+            <EntityTypeMapping TypeName="magguarddbModel.chargestation">
+              <MappingFragment StoreEntitySet="chargestations">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="stationid" ColumnName="stationid" />
+                <ScalarProperty Name="kind" ColumnName="kind" />
+                <ScalarProperty Name="dcharge" ColumnName="dcharge" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contacts">
+            <EntityTypeMapping TypeName="magguarddbModel.contact">
+              <MappingFragment StoreEntitySet="contacts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="priority" ColumnName="priority" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="sms" ColumnName="sms" />
+                <ScalarProperty Name="phone1" ColumnName="phone1" />
+                <ScalarProperty Name="phone2" ColumnName="phone2" />
+                <ScalarProperty Name="phone3" ColumnName="phone3" />
+                <ScalarProperty Name="phone4" ColumnName="phone4" />
+                <ScalarProperty Name="ownid" ColumnName="ownid" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="fphone" ColumnName="fphone" />
+                <ScalarProperty Name="femail" ColumnName="femail" />
+                <ScalarProperty Name="fsms" ColumnName="fsms" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="magguarddbModel.customer">
+              <MappingFragment StoreEntitySet="customers">
+                <ScalarProperty Name="ownid" ColumnName="ownid" />
+                <ScalarProperty Name="keys" ColumnName="keys" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="sentry" ColumnName="sentry" />
+                <ScalarProperty Name="deflat" ColumnName="deflat" />
+                <ScalarProperty Name="deflong" ColumnName="deflong" />
+                <ScalarProperty Name="rrate" ColumnName="rrate" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="prefix" ColumnName="prefix" />
+                <ScalarProperty Name="shipping" ColumnName="shipping" />
+                <ScalarProperty Name="billing" ColumnName="billing" />
+                <ScalarProperty Name="contact_name" ColumnName="contact_name" />
+                <ScalarProperty Name="contact_pos" ColumnName="contact_pos" />
+                <ScalarProperty Name="contact_phone" ColumnName="contact_phone" />
+                <ScalarProperty Name="contact_mobile" ColumnName="contact_mobile" />
+                <ScalarProperty Name="contact_email" ColumnName="contact_email" />
+                <ScalarProperty Name="mstype" ColumnName="mstype" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="billcontact" ColumnName="billcontact" />
+                <ScalarProperty Name="fixedcount" ColumnName="fixedcount" />
+                <ScalarProperty Name="fixedprice" ColumnName="fixedprice" />
+                <ScalarProperty Name="extraprice" ColumnName="extraprice" />
+                <ScalarProperty Name="tz" ColumnName="tz" />
+                <ScalarProperty Name="tformat" ColumnName="tformat" />
+                <ScalarProperty Name="nopings" ColumnName="nopings" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="events">
+            <EntityTypeMapping TypeName="magguarddbModel.event">
+              <MappingFragment StoreEntitySet="events">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rawid" ColumnName="rawid" />
+                <ScalarProperty Name="ownid" ColumnName="ownid" />
+                <ScalarProperty Name="stationid" ColumnName="stationid" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="ibuttonid" ColumnName="ibuttonid" />
+                <ScalarProperty Name="keyholderid" ColumnName="keyholderid" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="charge" ColumnName="charge" />
+                <ScalarProperty Name="edata" ColumnName="edata" />
+                <ScalarProperty Name="dt" ColumnName="dt" />
+                <ScalarProperty Name="response" ColumnName="response" />
+                <ScalarProperty Name="response_user" ColumnName="response_user" />
+                <ScalarProperty Name="response_dt" ColumnName="response_dt" />
+                <ScalarProperty Name="emailsent" ColumnName="emailsent" />
+                <ScalarProperty Name="eventdt" ColumnName="eventdt" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="round" ColumnName="round" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="historylogs">
+            <EntityTypeMapping TypeName="magguarddbModel.historylog">
+              <MappingFragment StoreEntitySet="historylog">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ownid" ColumnName="ownid" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="dt" ColumnName="dt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ibuttons">
+            <EntityTypeMapping TypeName="magguarddbModel.ibutton">
+              <MappingFragment StoreEntitySet="ibuttons">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="key" ColumnName="key" />
+                <ScalarProperty Name="ownid" ColumnName="ownid" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="crc" ColumnName="crc" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="note" ColumnName="note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="keyholders">
+            <EntityTypeMapping TypeName="magguarddbModel.keyholder">
+              <MappingFragment StoreEntitySet="keyholders">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="ownid" ColumnName="ownid" />
+                <ScalarProperty Name="ibuttonid" ColumnName="ibuttonid" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="keystations">
+            <EntityTypeMapping TypeName="magguarddbModel.keystation">
+              <MappingFragment StoreEntitySet="keystations">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ibuttonid" ColumnName="ibuttonid" />
+                <ScalarProperty Name="stationid" ColumnName="stationid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="notifications">
+            <EntityTypeMapping TypeName="magguarddbModel.notification">
+              <MappingFragment StoreEntitySet="notifications">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="contactid" ColumnName="contactid" />
+                <ScalarProperty Name="dt" ColumnName="dt" />
+                <ScalarProperty Name="ntype" ColumnName="ntype" />
+                <ScalarProperty Name="eventid" ColumnName="eventid" />
+                <ScalarProperty Name="success" ColumnName="success" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="props">
+            <EntityTypeMapping TypeName="magguarddbModel.prop">
+              <MappingFragment StoreEntitySet="prop">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kind" ColumnName="kind" />
+                <ScalarProperty Name="uin" ColumnName="uin" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="raws">
+            <EntityTypeMapping TypeName="magguarddbModel.raw">
+              <MappingFragment StoreEntitySet="raws">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="dt" ColumnName="dt" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="success" ColumnName="success" />
+                <ScalarProperty Name="messageid" ColumnName="messageid" />
+                <ScalarProperty Name="dttz" ColumnName="dttz" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sqllogs">
+            <EntityTypeMapping TypeName="magguarddbModel.sqllog">
+              <MappingFragment StoreEntitySet="sqllog">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ownid" ColumnName="ownid" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="cmd" ColumnName="cmd" />
+                <ScalarProperty Name="params" ColumnName="params" />
+                <ScalarProperty Name="dt" ColumnName="dt" />
+                <ScalarProperty Name="err" ColumnName="err" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stations">
+            <EntityTypeMapping TypeName="magguarddbModel.station">
+              <MappingFragment StoreEntitySet="stations">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ownid" ColumnName="ownid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="dstart" ColumnName="dstart" />
+                <ScalarProperty Name="esn" ColumnName="esn" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="charge" ColumnName="charge" />
+                <ScalarProperty Name="dcharge" ColumnName="dcharge" />
+                <ScalarProperty Name="eventid" ColumnName="eventid" />
+                <ScalarProperty Name="pricing" ColumnName="pricing" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="tz" ColumnName="tz" />
+                <ScalarProperty Name="adminstatus" ColumnName="adminstatus" />
+                <ScalarProperty Name="tzone_id" ColumnName="tzone_id" />
+                <ScalarProperty Name="account_type" ColumnName="account_type" />
+                <ScalarProperty Name="paymentperiod" ColumnName="paymentperiod" />
+                <ScalarProperty Name="isnoping" ColumnName="isnoping" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmp_ibuttons">
+            <EntityTypeMapping TypeName="magguarddbModel.tmp_ibuttons">
+              <MappingFragment StoreEntitySet="tmp_ibuttons">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="key" ColumnName="key" />
+                <ScalarProperty Name="ownid" ColumnName="ownid" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="keyholderid" ColumnName="keyholderid" />
+                <ScalarProperty Name="crc" ColumnName="crc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmp_keyholders">
+            <EntityTypeMapping TypeName="magguarddbModel.tmp_keyholders">
+              <MappingFragment StoreEntitySet="tmp_keyholders">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="ownid" ColumnName="ownid" />
+                <ScalarProperty Name="ibuttonid" ColumnName="ibuttonid" />
+                <ScalarProperty Name="ibutton" ColumnName="ibutton" />
+                <ScalarProperty Name="days" ColumnName="days" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmp_list">
+            <EntityTypeMapping TypeName="magguarddbModel.tmp_list">
+              <MappingFragment StoreEntitySet="tmp_list">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmp_warns">
+            <EntityTypeMapping TypeName="magguarddbModel.tmp_warns">
+              <MappingFragment StoreEntitySet="tmp_warns">
+                <ScalarProperty Name="low" ColumnName="low" />
+                <ScalarProperty Name="noresp" ColumnName="noresp" />
+                <ScalarProperty Name="alert" ColumnName="alert" />
+                <ScalarProperty Name="rrate" ColumnName="rrate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tzones">
+            <EntityTypeMapping TypeName="magguarddbModel.tzone">
+              <MappingFragment StoreEntitySet="tzone">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="shift" ColumnName="shift" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="magguarddbModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="acclevel" ColumnName="acclevel" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="ownid" ColumnName="ownid" />
+                <ScalarProperty Name="accword" ColumnName="accword" />
+                <ScalarProperty Name="chgpassword" ColumnName="chgpassword" />
+                <ScalarProperty Name="alertcontactid" ColumnName="alertcontactid" />
+                <ScalarProperty Name="otheruser" ColumnName="otheruser" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="parentuser" ColumnName="parentuser" />
+                <ScalarProperty Name="tzone_id" ColumnName="tzone_id" />
+                <ScalarProperty Name="tz" ColumnName="tz" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmp_alertcontacts">
+            <EntityTypeMapping TypeName="magguarddbModel.tmp_alertcontacts">
+              <MappingFragment StoreEntitySet="tmp_alertcontacts">
+                <ScalarProperty Name="nr" ColumnName="nr" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="priority" ColumnName="priority" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="sms" ColumnName="sms" />
+                <ScalarProperty Name="phone1" ColumnName="phone1" />
+                <ScalarProperty Name="phone2" ColumnName="phone2" />
+                <ScalarProperty Name="phone3" ColumnName="phone3" />
+                <ScalarProperty Name="phone4" ColumnName="phone4" />
+                <ScalarProperty Name="ownid" ColumnName="ownid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmp_treestations">
+            <EntityTypeMapping TypeName="magguarddbModel.tmp_treestations">
+              <MappingFragment StoreEntitySet="tmp_treestations">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ownid" ColumnName="ownid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="dstart" ColumnName="dstart" />
+                <ScalarProperty Name="esn" ColumnName="esn" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="charge" ColumnName="charge" />
+                <ScalarProperty Name="dcharge" ColumnName="dcharge" />
+                <ScalarProperty Name="devent" ColumnName="devent" />
+                <ScalarProperty Name="alertsystemid" ColumnName="alertsystemid" />
+                <ScalarProperty Name="alertname" ColumnName="alertname" />
+                <ScalarProperty Name="event_dt" ColumnName="event_dt" />
+                <ScalarProperty Name="event_status" ColumnName="event_status" />
+                <ScalarProperty Name="event_ibutton" ColumnName="event_ibutton" />
+                <ScalarProperty Name="event_keyholder" ColumnName="event_keyholder" />
+                <ScalarProperty Name="event_days" ColumnName="event_days" />
+                <ScalarProperty Name="pricing" ColumnName="pricing" />
+                <ScalarProperty Name="event_dt2" ColumnName="event_dt2" />
+                <ScalarProperty Name="uniqueid" ColumnName="uniqueid" />
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmp_users">
+            <EntityTypeMapping TypeName="magguarddbModel.tmp_users">
+              <MappingFragment StoreEntitySet="tmp_users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="acclevel" ColumnName="acclevel" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="ownid" ColumnName="ownid" />
+                <ScalarProperty Name="accword" ColumnName="accword" />
+                <ScalarProperty Name="alertsystems" ColumnName="alertsystems" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="magguarddbModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="magguarddbModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="magguarddbModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="magguarddbModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="magguarddbModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="MagGuardUserID" ColumnName="MagGuardUserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TestField" ColumnName="TestField" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="magguarddbModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
